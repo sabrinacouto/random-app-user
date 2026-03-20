@@ -2,8 +2,6 @@
 
 App mobile para explorar e interagir com pessoas ao redor do mundo, consumindo a API pública [randomuser.me](https://randomuser.me/).
 
-Desenvolvido como desafio técnico para a vaga de Desenvolvedor(a) Frontend Junior na C2S.
-
 ---
 
 ## Como rodar o projeto
