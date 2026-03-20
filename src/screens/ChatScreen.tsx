@@ -58,7 +58,6 @@ export default function ChatScreen({ route, navigation }: Props) {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={0}
     >
-      {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
           <Ionicons name="chevron-back" size={24} color="#1a1a2e" />
@@ -89,7 +88,6 @@ export default function ChatScreen({ route, navigation }: Props) {
         contentContainerStyle={{ paddingVertical: 16 }}
       />
 
-      {/* Input */}
       <ChatInput value={input} onChangeText={setInput} onSend={handleSend} />
     </KeyboardAvoidingView>
   );

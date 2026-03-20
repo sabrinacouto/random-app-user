@@ -49,12 +49,13 @@ export function useUsers({ gender = '', nat = '' }: UseUsersParams) {
     if (!loading && hasMore) load(page + 1);
   }, [loading, hasMore, page, load]);
 
-  const reset = useCallback(() => {
-    setUsers([]);
-    setPage(1);
-    setHasMore(true);
-    load(1, true);
-  }, [load]);
+ const reset = useCallback(() => {
+  setUsers([]);
+  setPage(1);
+  setHasMore(true);
+  setError(null);
+  load(1, true);
+}, [load]);
 
   return {
     users,
