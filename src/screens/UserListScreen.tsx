@@ -16,9 +16,9 @@ import { SkeletonList } from '../components/list/UserCardSkeleton';
 import SearchBar from '../components/list/SearchBar';
 import FilterBar from '../components/list/FilterBar';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'List'>;
+type UserListScreenProps = NativeStackScreenProps<RootStackParamList, 'List'>;
 
-export default function UserListScreen({ navigation }: Props) {
+export default function UserListScreen({ navigation }: UserListScreenProps) {
   const [gender, setGender] = useState('');
   const [nat, setNat] = useState('');
   const [search, setSearch] = useState('');

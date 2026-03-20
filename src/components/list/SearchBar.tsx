@@ -8,13 +8,13 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-interface Props {
+interface SearchBarProps {
   value: string;
   onChangeText: (text: string) => void;
   onClear: () => void;
 }
 
-export default function SearchBar({ value, onChangeText, onClear }: Props) {
+export default function SearchBar({ value, onChangeText, onClear }: SearchBarProps) {
   const clearOpacity = useRef(new Animated.Value(0)).current;
   const clearScale = useRef(new Animated.Value(0.5)).current;
 

@@ -5,14 +5,14 @@ interface FilterOption {
   value: string;
 }
 
-interface Props {
+interface FilterGroupProps {
   label: string;
   options: FilterOption[];
   selected: string;
   onSelect: (value: string) => void;
 }
 
-function FilterGroup({ label, options, selected, onSelect }: Props) {
+function FilterGroup({ label, options, selected, onSelect }: FilterGroupProps) {
   return (
     <View style={styles.group}>
       <Text style={styles.label}>{label}</Text>

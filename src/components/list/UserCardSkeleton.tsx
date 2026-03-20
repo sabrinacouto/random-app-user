@@ -15,17 +15,16 @@ export default function UserCardSkeleton() {
 
   return (
     <Animated.View style={[styles.card, { opacity }]}>
-      {/* Avatar */}
+   
       <View style={styles.avatar} />
 
-      {/* Lines */}
+
       <View style={styles.info}>
         <View style={[styles.line, { width: '60%' }]} />
         <View style={[styles.line, { width: '40%' }]} />
         <View style={[styles.line, { width: '80%' }]} />
       </View>
 
-      {/* Heart placeholder */}
       <View style={styles.heart} />
     </Animated.View>
   );

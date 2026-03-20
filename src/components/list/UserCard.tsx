@@ -10,7 +10,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { User } from '../../types';
 
-interface Props {
+interface UserCardProps {
   user: User;
   onPress: () => void;
   onFavorite: () => void;
@@ -18,7 +18,7 @@ interface Props {
   index: number;
 }
 
-export default function UserCard({ user, onPress, onFavorite, isFavorite, index }: Props) {
+export default function UserCard({ user, onPress, onFavorite, isFavorite, index }: UserCardProps) {
   const translateY = useRef(new Animated.Value(40)).current;
   const opacity = useRef(new Animated.Value(0)).current;
   const heartScale = useRef(new Animated.Value(1)).current;
