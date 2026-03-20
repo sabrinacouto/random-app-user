@@ -1,6 +1,7 @@
 export type RootStackParamList = {
-  Splash: undefined;  
+  Splash: undefined;
   List: undefined;
+  Favorites: undefined;
   Profile: { user: User };
   Chat: { user: User };
 };
@@ -19,6 +20,7 @@ export interface User {
     country: string;
     postcode: string | number;
     timezone: { offset: string; description: string };
+    coordinates: { latitude: string; longitude: string };
   };
   dob: { date: string; age: number };
   id: { name: string; value: string };
