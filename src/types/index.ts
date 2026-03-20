@@ -1,4 +1,5 @@
 export type RootStackParamList = {
+  Splash: undefined;  
   List: undefined;
   Profile: { user: User };
   Chat: { user: User };

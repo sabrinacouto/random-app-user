@@ -1,37 +1,48 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
+import SplashScreen from '../screens/SplashScreen';
 import UserListScreen from '../screens/UserListScreen';
 import UserProfileScreen from '../screens/UserProfileScreen';
 import ChatScreen from '../screens/ChatScreen';
-
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: { backgroundColor: '#6c63ff' },
-          headerTintColor: '#fff',
-          headerTitleStyle: { fontWeight: '700' },
-        }}
-      >
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen
           name="List"
           component={UserListScreen}
-          options={{ title: 'Random User App' }}
+          options={{
+            headerShown: true,
+            headerStyle: { backgroundColor: '#ffffff' },
+            headerTintColor: '#1a1a2e',
+            headerTitleStyle: { fontWeight: '700' },
+            title: 'People',
+            animation: 'fade',
+          }}
         />
         <Stack.Screen
           name="Profile"
           component={UserProfileScreen}
-          options={{ title: 'Perfil' }}
+          options={{
+            headerShown: true,
+            headerStyle: { backgroundColor: '#ffffff' },
+            headerTintColor: '#1a1a2e',
+            headerTitleStyle: { fontWeight: '700' },
+            title: 'Perfil',
+            animation: 'slide_from_right',
+          }}
         />
         <Stack.Screen
           name="Chat"
           component={ChatScreen}
-          options={{ headerShown: false }}
+          options={{
+            animation: 'slide_from_bottom',
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
