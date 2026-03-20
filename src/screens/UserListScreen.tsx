@@ -1,11 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  RefreshControl,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, StyleSheet, RefreshControl, TouchableOpacity } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList, User } from '../types';
@@ -16,9 +10,9 @@ import { SkeletonList } from '../components/list/UserCardSkeleton';
 import SearchBar from '../components/list/SearchBar';
 import FilterBar from '../components/list/FilterBar';
 
-type UserListScreenProps = NativeStackScreenProps<RootStackParamList, 'List'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'List'>;
 
-export default function UserListScreen({ navigation }: UserListScreenProps) {
+export default function UserListScreen({ navigation }: Props) {
   const [gender, setGender] = useState('');
   const [nat, setNat] = useState('');
   const [search, setSearch] = useState('');
@@ -26,10 +20,14 @@ export default function UserListScreen({ navigation }: UserListScreenProps) {
   const { users, loading, refreshing, error, refresh, loadMore, reset } = useUsers({ gender, nat });
   const { loadFavorites, toggleFavorite, isFavorite } = useFavorites();
 
-  useEffect(() => { reset(); }, [gender, nat]);
+  useEffect(() => {
+    reset();
+  }, [gender, nat]);
 
-  useEffect(() => { loadFavorites(); }, []);
-
+  useEffect(() => {
+    loadFavorites();
+    reset();
+  }, []);
 
   const filtered = useMemo(() => {
     if (!search.trim()) return users;
@@ -39,8 +37,6 @@ export default function UserListScreen({ navigation }: UserListScreenProps) {
     );
   }, [users, search]);
 
-  const handlePress = (user: User) => navigation.navigate('Profile', { user });
-
   if (loading && users.length === 0) return <SkeletonList />;
 
   return (
@@ -48,8 +44,8 @@ export default function UserListScreen({ navigation }: UserListScreenProps) {
       <FilterBar
         gender={gender}
         nat={nat}
-        onGenderChange={setGender}
-        onNatChange={setNat}
+        onGenderChange={(val) => { setGender(val); }}
+        onNatChange={(val) => { setNat(val); }}
       />
 
       <SearchBar
@@ -74,13 +70,15 @@ export default function UserListScreen({ navigation }: UserListScreenProps) {
               user={item}
               index={index}
               isFavorite={isFavorite(item.login.uuid)}
-              onPress={() => handlePress(item)}
+              onPress={() => navigation.navigate('Profile', { user: item })}
               onFavorite={() => toggleFavorite(item)}
             />
           )}
           onEndReached={loadMore}
           onEndReachedThreshold={0.3}
-          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} tintColor="#6c63ff" />}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={refresh} tintColor="#6c63ff" />
+          }
           ListEmptyComponent={
             <Text style={styles.emptyText}>
               {search ? 'Nenhum resultado para essa busca.' : 'Nenhum usuário encontrado.'}
@@ -94,10 +92,10 @@ export default function UserListScreen({ navigation }: UserListScreenProps) {
 }
 
 const styles = StyleSheet.create({
-  container:   { flex: 1, backgroundColor: '#f4f6fb' },
-  center:      { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 },
-  errorText:   { color: '#e74c3c', fontSize: 15, textAlign: 'center', marginBottom: 16 },
-  retryBtn:    { backgroundColor: '#6c63ff', paddingHorizontal: 24, paddingVertical: 10, borderRadius: 8 },
-  retryText:   { color: '#fff', fontWeight: '600' },
-  emptyText:   { textAlign: 'center', marginTop: 60, color: '#aaa', fontSize: 15 },
+  container:  { flex: 1, backgroundColor: '#f4f6fb' },
+  center:     { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 },
+  errorText:  { color: '#e74c3c', fontSize: 15, textAlign: 'center', marginBottom: 16 },
+  retryBtn:   { backgroundColor: '#6c63ff', paddingHorizontal: 24, paddingVertical: 10, borderRadius: 8 },
+  retryText:  { color: '#fff', fontWeight: '600' },
+  emptyText:  { textAlign: 'center', marginTop: 60, color: '#aaa', fontSize: 15 },
 });

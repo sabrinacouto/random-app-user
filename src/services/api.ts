@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { FetchUsersParams } from './type';
 
 const api = axios.create({
   baseURL: 'https://randomuser.me/api/',
@@ -8,15 +7,22 @@ const api = axios.create({
   },
 });
 
+export interface FetchUsersParams {
+  page?: number;
+  results?: number;
+  gender?: string;
+  nat?: string;
+}
+
 export const fetchUsers = async ({
   page = 1,
   results = 20,
   gender = '',
   nat = '',
-  seed = 'c2s-people-app',
 }: FetchUsersParams) => {
-  const params: Record<string, string | number> = { page, results, seed };
+  const params: Record<string, string | number> = { page, results };
 
+  if (!gender && !nat) params.seed = 'c2s-people-app';
   if (gender) params.gender = gender;
   if (nat) params.nat = nat;
 

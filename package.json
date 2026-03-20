@@ -11,7 +11,6 @@
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
     "@react-native-async-storage/async-storage": "^3.0.1",
-    "@react-navigation/bottom-tabs": "^7.15.6",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
     "@shopify/flash-list": "^2.3.0",
@@ -24,12 +23,14 @@
     "expo-maps": "~55.0.11",
     "expo-status-bar": "~55.0.4",
     "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-native": "0.83.2",
     "react-native-gesture-handler": "~2.30.0",
     "react-native-maps": "1.27.2",
     "react-native-reanimated": "4.2.1",
     "react-native-safe-area-context": "~5.6.2",
     "react-native-screens": "~4.23.0",
+    "react-native-web": "^0.21.0",
     "typescript": "~5.9.2"
   },
   "private": true

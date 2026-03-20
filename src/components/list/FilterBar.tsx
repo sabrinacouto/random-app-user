@@ -42,18 +42,16 @@ interface FilterBarProps {
 
 export default function FilterBar({ gender, nat, onGenderChange, onNatChange }: FilterBarProps) {
   const genders: FilterOption[] = [
-    { label: 'Todos', value: '' },
-    { label: 'Masculino', value: 'male' },
-    { label: 'Feminino', value: 'female' },
+    { label: '👥 Todos', value: '' },
+    { label: '👨 Masculino', value: 'male' },
+    { label: '👩 Feminino', value: 'female' },
   ];
 
   const nats: FilterOption[] = [
-    { label: 'Todos', value: '' },
+    { label: '🌍 Todos', value: '' },
     { label: '🇧🇷 BR', value: 'BR' },
     { label: '🇺🇸 US', value: 'US' },
     { label: '🇬🇧 GB', value: 'GB' },
-    { label: '🇫🇷 FR', value: 'FR' },
-    { label: '🇩🇪 DE', value: 'DE' },
     { label: '🇦🇺 AU', value: 'AU' },
   ];
 
@@ -66,30 +64,12 @@ export default function FilterBar({ gender, nat, onGenderChange, onNatChange }: 
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f0f0f0',
-  },
-  group: { marginBottom: 6 },
-  label: {
-    fontSize: 11,
-    fontWeight: '700',
-    color: '#aaa',
-    textTransform: 'uppercase',
-    letterSpacing: 0.8,
-    marginLeft: 16,
-    marginBottom: 6,
-  },
-  row: { paddingHorizontal: 16, gap: 8 },
-  chip: {
-    paddingHorizontal: 14,
-    paddingVertical: 6,
-    borderRadius: 20,
-    backgroundColor: '#f4f4f8',
-  },
-  chipActive: { backgroundColor: '#6c63ff' },
-  chipText: { fontSize: 13, color: '#555', fontWeight: '500' },
-  chipTextActive: { color: '#fff', fontWeight: '700' },
+  container:       { backgroundColor: '#fff', paddingVertical: 10, borderBottomWidth: 1, borderBottomColor: '#f0f0f0' },
+  group:           { marginBottom: 6 },
+  label:           { fontSize: 11, fontWeight: '700', color: '#aaa', textTransform: 'uppercase', letterSpacing: 0.8, marginLeft: 16, marginBottom: 6 },
+  row:             { paddingHorizontal: 16, gap: 8 },
+  chip:            { paddingHorizontal: 14, paddingVertical: 6, borderRadius: 20, backgroundColor: '#f4f4f8' },
+  chipActive:      { backgroundColor: '#6c63ff' },
+  chipText:        { fontSize: 13, color: '#555', fontWeight: '500' },
+  chipTextActive:  { color: '#fff', fontWeight: '700' },
 });

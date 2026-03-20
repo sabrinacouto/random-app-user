@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { fetchUsers } from '../services/api';
 import { User } from '../types';
 
@@ -14,14 +14,16 @@ export function useUsers({ gender = '', nat = '' }: UseUsersParams) {
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState(true);
+  const isLoadingRef = useRef(false);
 
   const load = useCallback(async (pageNum: number, isRefresh = false) => {
-    if (loading) return;
+    if (isLoadingRef.current) return;
+    isLoadingRef.current = true;
     setLoading(true);
     setError(null);
 
     try {
-      const data = await fetchUsers({ page: pageNum, results: 20, gender, nat });
+      const data = await fetchUsers({ page: pageNum, results: 50, gender, nat });
       const newUsers: User[] = data.results;
 
       if (isRefresh || pageNum === 1) {
@@ -30,15 +32,16 @@ export function useUsers({ gender = '', nat = '' }: UseUsersParams) {
         setUsers(prev => [...prev, ...newUsers]);
       }
 
-      setHasMore(newUsers.length === 20);
+      setHasMore(newUsers.length === 50);
       setPage(pageNum);
     } catch {
       setError('Erro ao carregar usuários. Tente novamente.');
     } finally {
       setLoading(false);
       setRefreshing(false);
+      isLoadingRef.current = false;
     }
-  }, [gender, nat, loading]);
+  }, [gender, nat]);
 
   const refresh = useCallback(() => {
     setRefreshing(true);
@@ -46,25 +49,18 @@ export function useUsers({ gender = '', nat = '' }: UseUsersParams) {
   }, [load]);
 
   const loadMore = useCallback(() => {
-    if (!loading && hasMore) load(page + 1);
-  }, [loading, hasMore, page, load]);
+    if (!isLoadingRef.current && hasMore) {
+      load(page + 1);
+    }
+  }, [hasMore, page, load]);
 
- const reset = useCallback(() => {
-  setUsers([]);
-  setPage(1);
-  setHasMore(true);
-  setError(null);
-  load(1, true);
-}, [load]);
+  const reset = useCallback(() => {
+    setUsers([]);
+    setPage(1);
+    setHasMore(true);
+    setError(null);
+    load(1, true);
+  }, [load]);
 
-  return {
-    users,
-    loading,
-    refreshing,
-    error,
-    hasMore,
-    refresh,
-    loadMore,
-    reset,
-  };
+  return { users, loading, refreshing, error, hasMore, refresh, loadMore, reset };
 }
