@@ -12,22 +12,6 @@ Desenvolvido como desafio técnico para a vaga de Desenvolvedor(a) Frontend Juni
 - Node.js (LTS)
 - Expo Go instalado no celular ([Android](https://play.google.com/store/apps/details?id=host.exp.exponent) / [iOS](https://apps.apple.com/app/expo-go/id982107779))
 
-### Instalação
-```bash
-git clone https://github.com/seu-usuario/random-user-app.git
-cd random-user-app
-npm install
-npx expo start
-```
-
-### Visualizar
-
-| Opção | Como |
-|-------|------|
-| 📱 Celular | Escaneie o QR Code com o Expo Go |
-| 🌐 Navegador | Pressione `w` no terminal após rodar `npx expo start` |
-| 🤖 Android | Pressione `a` no terminal (requer Android Studio) |
-| 🍎 iOS | Pressione `i` no terminal (requer Xcode — Mac apenas) |
 
 ### Instalação
 ```bash
@@ -40,6 +24,15 @@ npx expo start
 Escaneie o QR Code com o Expo Go e o app abrirá no seu celular.
 
 ---
+### Visualizar
+
+| Opção | Como |
+|-------|------|
+| 📱 Celular | Escaneie o QR Code com o Expo Go |
+| 🌐 Navegador | Pressione `w` no terminal após rodar `npx expo start` |
+| 🤖 Android | Pressione `a` no terminal (requer Android Studio) |
+| 🍎 iOS | Pressione `i` no terminal (requer Xcode — Mac apenas) |
+
 
 ## O que foi implementado
 
